@@ -1,0 +1,1 @@
+export const logo = './main-logo/bloggedin.png'
