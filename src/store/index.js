@@ -5,4 +5,5 @@ export default configureStore({
         auth: AuthReducer,
     },
     devTools: process.env.NODE_ENV !== 'production',
+    
 })

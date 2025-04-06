@@ -3,7 +3,8 @@ import brandlogo from '../constants/main-logo/brandlogo.jpg'
 import { Input } from '../ui'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUserStart } from '../slice/auth'
+import { signUserFailure, signUserStart, signUserSucces } from '../slice/auth'
+import AuthService from '../service/auth'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -11,9 +12,17 @@ const Login = () => {
   const {isLoading} = useSelector(state => state.auth)
   console.log(isLoading)
 
-  const loginHandler = (e) => {
+  const loginHandler =async (e) => {
     e.preventDefault()
-    dispatch(loginUserStart())
+    dispatch(signUserStart())
+    const user = {email, password}
+    try {
+      const response = await AuthService.userLogin(user)
+      dispatch(signUserSucces(response.data.user))
+      console.log(response.data.user)
+    } catch (error) {
+      dispatch(signUserFailure(error.response.data.errors))
+    }
   }
   
   return (
