@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import bloggedinLogo from '../../constants/main-logo/bloggedin.png'
+import bloggedinLogo from '../../constants/main-logo/bloggedinnew.png'
 
 const Navbar = () => {
   return (
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom container">
       <div class="col-md-3 mb-2 mb-md-0">
         <Link to={'/'}>
-            <img width={'150px'} src={bloggedinLogo} alt="" />
+            <img width={'180px'} src={bloggedinLogo} alt="" />
         </Link>
       </div>
 
@@ -19,10 +19,10 @@ const Navbar = () => {
 
       <div class="col-md-3 text-end">
         <Link to={'/login'}>
-            <button type="button" class="btn btn-outline-primary me-2">Login</button>
+            <button type="button" class="btn btn-outline-dark me-2">Login</button>
         </Link>
         <Link to={'/register'}>
-            <button type="button" class="btn btn-primary">Sign-up</button>
+            <button type="button" class="btn btn-dark">Sign-up</button>
         </Link>
         
       </div>
