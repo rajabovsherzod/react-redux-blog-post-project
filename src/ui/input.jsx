@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Input = ({label, type = "text", marginTop, state, setState}) => {
+const Input = ({label, type = "text", formId, marginTop, state, setState}) => {
   return (
     <div className='form-floating' style={{marginTop: marginTop}}>
-          <input type={type} class="form-control" id="floatingPassword" value={state} onChange={e => setState(e.target.value)} placeholder={label}/>
-          <label for="floatingPassword">{label}</label>
+          <input type={type} className="form-control" id={formId} value={state} onChange={e => setState(e.target.value)} placeholder={label}/>
+          <label htmlFor="floatingPassword">{label}</label>
     </div>
   )
 }

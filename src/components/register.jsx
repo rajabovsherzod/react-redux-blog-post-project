@@ -9,17 +9,17 @@ const Register = () => {
   return (
     <div className='container text-center' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px'}}>
       <form className='w-25'>
-        <img class="mb-4" src={brandlogo} alt="" width="72" height="72"/>
-        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+        <img className="mb-4" src={brandlogo} alt="" width="72" height="72"/>
+        <h1 className="h3 mb-3 fw-normal">Please sign up</h1>
 
-       <Input label="Username" state={name} setState={setName}/>
+       <Input label="Username" formId={"floatingName"} state={name} setState={setName}/>
 
-       <Input label="Email" type="email" marginTop={"15px"} state={email} setState={setEmail}/>
+       <Input label="Email" formId={"floatingEmail"} type="email" marginTop={"15px"} state={email} setState={setEmail}/>
 
-       <Input label="Password" type="password" marginTop={"15px"} state={password} setState={setPassword}/>
+       <Input label="Password" formId={"floatingPassword"} type="password" marginTop={"15px"} state={password} setState={setPassword}/>
 
-        <button class="btn btn-dark w-100 py-2 mt-3" type="submit">Register</button>
-        <p class="mt-5 mb-3 text-body-secondary">© by Radjabov 2025</p>
+        <button className="btn btn-dark w-100 py-2 mt-3" type="submit">Register</button>
+        <p className="mt-5 mb-3 text-body-secondary">© by Radjabov 2025</p>
   </form>
     </div>
   )
