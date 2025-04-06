@@ -3,7 +3,8 @@ import brandlogo from '../constants/main-logo/brandlogo.jpg'
 import { Input } from '../ui'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { registerUserStart } from '../slice/auth'
+import { registerUserFailure, registerUserStart, registerUserSucces } from '../slice/auth'
+import AuthService from '../service/auth'
 const Register = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -11,9 +12,18 @@ const Register = () => {
   const dispatch = useDispatch()
   const {isLoading} = useSelector(state => state.auth)
 
-const registerHandler = (e) => {
+const registerHandler = async (e) => {
   e.preventDefault()
   dispatch(registerUserStart())
+  const user = {username: name, email, password}
+  try {
+    const response = await AuthService.userRegister(user)
+    console.log(response)
+    console.log(user)
+    dispatch(registerUserSucces())
+  } catch (error) {
+    dispatch(registerUserFailure())
+  }
 }
 
   return (
