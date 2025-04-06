@@ -2,10 +2,20 @@ import React from 'react'
 import brandlogo from '../constants/main-logo/brandlogo.jpg'
 import { Input } from '../ui'
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { registerUserStart } from '../slice/auth'
 const Register = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+  const {isLoading} = useSelector(state => state.auth)
+
+const registerHandler = (e) => {
+  e.preventDefault()
+  dispatch(registerUserStart())
+}
+
   return (
     <div className='container text-center' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px'}}>
       <form className='w-25'>
@@ -18,7 +28,7 @@ const Register = () => {
 
        <Input label="Password" formId={"floatingPassword"} type="password" marginTop={"15px"} state={password} setState={setPassword}/>
 
-        <button className="btn btn-dark w-100 py-2 mt-3" type="submit">Register</button>
+        <button className="btn btn-dark w-100 py-2 mt-3" onClick={e => registerHandler(e)} disabled={isLoading} type="submit">{isLoading ? "Loading...": "Register"}</button>
         <p className="mt-5 mb-3 text-body-secondary">© by Radjabov 2025</p>
   </form>
     </div>
