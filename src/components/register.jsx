@@ -4,6 +4,7 @@ import { Input } from '../ui'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { signUserFailure, signUserStart, signUserSucces } from '../slice/auth'
+import { ValidationError} from './'
 import AuthService from '../service/auth'
 const Register = () => {
   const [name, setName] = useState('')
@@ -21,7 +22,7 @@ const registerHandler = async (e) => {
     dispatch(signUserSucces(response.user))
   } catch (error) {
     console.log(error.response.data.errors)
-    dispatch(signUserFailure(error.response.data))
+    dispatch(signUserFailure(error.response.data.errors))
   }
 }
 
@@ -30,12 +31,14 @@ const registerHandler = async (e) => {
       <form className='w-25'>
         <img className="mb-4" src={brandlogo} alt="" width="72" height="72"/>
         <h1 className="h3 mb-3 fw-normal">Please sign up</h1>
+        <ValidationError/>
 
-       <Input label="Username" formId={"floatingName"} state={name} setState={setName}/>
+       <Input label="Email" formId={"floatingEmail"} type="email"  state={email} setState={setEmail}/>
 
-       <Input label="Email" formId={"floatingEmail"} type="email" marginTop={"15px"} state={email} setState={setEmail}/>
+       <Input label="Password" formId={"floatingPassword"} type="password" marginTop={"15px"} state={password} setState={setPassword}/>   
 
-       <Input label="Password" formId={"floatingPassword"} type="password" marginTop={"15px"} state={password} setState={setPassword}/>
+       <Input label="Username" formId={"floatingName"} marginTop={"15px"} state={name} setState={setName}/>
+
 
         <button className="btn btn-dark w-100 py-2 mt-3" onClick={e => registerHandler(e)} disabled={isLoading} type="submit">{isLoading ? "Loading...": "Register"}</button>
         <p className="mt-5 mb-3 text-body-secondary">© by Radjabov 2025</p>
