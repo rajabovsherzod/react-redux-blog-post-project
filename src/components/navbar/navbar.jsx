@@ -1,11 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import bloggedinLogo from '../../constants/main-logo/bloggedinnew.png'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { removeItem } from '../../helpers/persistance-storage'
+import { logoutUser } from '../../slice/auth'
 
 const Navbar = () => {
   const {isLoggedIn , user} = useSelector(state => state.auth)
+  const dispatch = useDispatch()
   console.log(isLoggedIn)
+  const navigate = useNavigate()
+
+  const logoutHandler = () => {
+      dispatch(logoutUser())
+      navigate('/login')
+      removeItem("token")
+  }
+
+
   return (
     <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom container">
       <div className="col-md-3 mb-2 mb-md-0">
@@ -25,7 +37,7 @@ const Navbar = () => {
         {isLoggedIn ? 
         <div style={{display: 'flex', width: '', justifyContent: 'end', alignItems: 'center'}}>
           <p className='m-0 me-3' style={{marginRight: '20px'}}>{user.username}</p>
-          <button type="button" className="btn btn-outline-danger me-2">Logout</button>
+          <button type="button" className="btn btn-outline-danger me-2" onClick={logoutHandler}>Logout</button>
         </div>
         :
         <>
