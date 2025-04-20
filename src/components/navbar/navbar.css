@@ -1,0 +1,221 @@
+/* Navbar.css - o'zgartirilgan versiya */
+.navbar-container {
+    width: 100%;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 16px 0;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: fixed; /* Fixed position */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  body {
+    padding-top: 70px; /* Fixed navbar uchun joy */
+  }
+  
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Tablet/desktop uchun */
+  }
+  
+  .navbar-logo {
+    z-index: 10;
+    flex-shrink: 0; /* Logo o'lchamini saqlab qolish */
+  }
+  
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-direction: row; /* Horizontal menu */
+    justify-content: center; /* Center links */
+    flex-grow: 1; /* Take available space */
+  }
+  
+  .nav-link {
+    padding: 8px 12px;
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #111827;
+  }
+  
+  .nav-link.active {
+    color: #111827;
+    font-weight: 600;
+  }
+  
+  .navbar-auth {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; /* Auth buttons o'lchamini saqlab qolish */
+  }
+  
+  .user-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .username {
+    margin: 0;
+    margin-right: 16px;
+    font-weight: 500;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  /* Button Styles */
+  .btn-login, .btn-logout, .btn-signup {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+  }
+  
+  .btn-login {
+    background-color: transparent;
+    border: 1px solid #374151;
+    color: #374151;
+  }
+  
+  .btn-login:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .btn-signup {
+    background-color: #111827;
+    border: 1px solid #111827;
+    color: white;
+  }
+  
+  .btn-signup:hover {
+    background-color: #1f2937;
+  }
+  
+  .btn-logout {
+    background-color: transparent;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+  }
+  
+  .btn-logout:hover {
+    background-color: #fef2f2;
+  }
+  
+  /* Hamburger Menu */
+  .hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+  }
+  
+  .hamburger-menu span {
+    width: 100%;
+    height: 2px;
+    background-color: #374151;
+    transition: all 0.3s;
+  }
+  
+  .hamburger-menu.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  
+  .hamburger-menu.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger-menu.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      display: flex;
+    }
+    
+    .navbar-content {
+      flex-wrap: wrap; /* Mobile uchun */
+    }
+    
+    .navbar-menu {
+      order: 3; /* Logo va hamburger menudan keyin */
+      flex-basis: 100%; /* To'liq kenglikni egallash */
+      margin-left: 0; /* Reset margin */
+      height: 0; /* Yopilgan holatda balandligi 0 */
+      overflow: hidden; /* Yopilgan holatda contentni yashirish */
+      transition: height 0.3s ease; /* Smooth height transition */
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0;
+      margin-top: 0;
+    }
+    
+    .navbar-menu.open {
+      height: auto; /* Ochilgan holatda barcha contentni ko'rsatish */
+      padding-top: 16px;
+      margin-top: 16px;
+      border-top: 1px solid #e5e7eb;
+    }
+    
+    .navbar-nav {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    
+    .nav-link {
+      padding: 12px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    
+    .navbar-auth {
+      width: 100%;
+    }
+    
+    .user-menu {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+    .username {
+      margin-right: 0;
+    }
+    
+    .auth-buttons {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }

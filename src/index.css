@@ -12,6 +12,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.main-title{
+  text-align: center;
+  font-size: 220px;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 0.8rem;
+  margin-top: -50px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -60,3 +69,288 @@ code {
   fill: #fff;
 }
 
+.no-select {
+  -webkit-user-select: none;  
+  -moz-user-select: none;     
+  -ms-user-select: none;      
+  user-select: none;          
+  cursor: default;
+}
+
+/* Main.css ga qo'shing - to'g'rilangan versiya */
+
+.no-select-image {
+  /* Belgilashni oldini olish */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  /* Mouse event larni oldini olish */
+  pointer-events: none;
+  
+  /* Kursorni o'zgartirish */
+  cursor: default;
+}
+
+
+
+
+.main-container {
+  width: 100%;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.blog-container {
+  max-width: 1370px !important;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #111827;
+}
+
+.recent-posts {
+  margin-bottom: 40px;
+}
+
+.recent-posts-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+.secondary-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.grid-design-post {
+  margin-bottom: 40px;
+}
+
+/* Tablet va desktop uchun */
+@media (min-width: 768px) {
+  .blog-container {
+    padding: 40px;
+  }
+
+  .recent-posts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .main-post {
+    grid-column: 1;
+  }
+  
+  .secondary-posts {
+    grid-column: 2;
+  }
+}
+
+/* Mobil qurilmalar uchun (390px va undan kichik) */
+@media (max-width: 390px) {
+  /* Container padding */
+  .blog-container {
+    padding: 16px;
+  }
+  
+  /* Section title */
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  
+  /* Recent posts grid */
+  .recent-posts-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  /* Main va secondary postlar */
+  .main-post, 
+  .secondary-posts {
+    grid-column: 1;
+    width: 100%;
+  }
+  
+  /* Secondary posts container */
+  .secondary-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Kichik kartlar */
+  .post-card-small {
+    flex-direction: column !important;
+    height: auto !important;
+    margin-bottom: 16px;
+  }
+  
+  .post-card-small .post-image {
+    width: 100% !important;
+    height: 180px !important;
+    position: relative;
+  }
+  
+  .post-card-small .post-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .post-card-small .post-content {
+    width: 100% !important;
+  }
+  
+  /* Spotlight post */
+  .grid-design-post {
+    margin-bottom: 16px;
+  }
+  
+  /* All posts grid - if you have one */
+  .all-posts {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  /* Har qanday card */
+  .post-card {
+    margin-bottom: 16px;
+  }
+  
+  /* Barcha cardlar uchun title */
+  .post-title {
+    font-size: 18px !important;
+  }
+}
+
+/* Bu qo'shimcha o'zgarishlarni ham tekshiring */
+.post-card-small {
+  flex-direction: row;
+  align-items: stretch; 
+  height: 100%;
+}
+
+.post-card-small .post-image {
+  width: 40%;
+  position: relative;
+}
+
+.post-card-small .post-image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  top: 0;
+}
+
+.post-card-small .post-content {
+  width: 60%;
+}
+
+
+/* All Posts */
+/* Main.css ga qo'shing */
+
+/* All Posts Section */
+.all-posts-section {
+  margin-bottom: 40px;
+}
+
+.all-posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* Tablet (md) */
+@media (min-width: 768px) {
+  .all-posts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Desktop (lg) */
+@media (min-width: 992px) {
+  .all-posts-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Mobil qurilmalar uchun (390px va undan kichik) */
+@media (max-width: 390px) {
+  .all-posts-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* PostCardButtons */
+/* Post actions container - yangilangan versiya */
+.post-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+}
+
+/* Action button - yangi stil */
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 8px;
+  background-color: #f9fafb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: #4b5563;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* View button */
+.view-btn {
+  color: #3b82f6;
+  border: none;
+  background-color: #FFFFFF;
+}
+
+/* Edit button */
+.edit-btn {
+  color: #10b981;
+  background-color: #FFFFFF;
+  border: none;
+}
+
+
+/* Delete button */
+.delete-btn {
+  color: #ef4444;
+  border: none;
+  background-color: #FFFFFF;
+}

@@ -7,15 +7,6 @@ axios.interceptors.request.use(
   (config) => {
     const token = getItem("token");
     const authorization = token ? `Token ${token}` : '';
-
-    // 🔍 Diagnostics
-    console.log("🧪 Interceptor ishladi");
-    console.log("Token:", token);
-    console.log("Authorization Header:", authorization);
-    console.log("Request URL:", config.url);
-    console.log("Request Method:", config.method);
-
-    // Tokenni kiritish
     if (authorization) {
       config.headers.Authorization = authorization;
     }
@@ -23,7 +14,7 @@ axios.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log("❌ Interceptor error:", error);
+    console.log(error);
     return Promise.reject(error);
   }
 );

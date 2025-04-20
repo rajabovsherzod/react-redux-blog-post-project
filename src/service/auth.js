@@ -6,7 +6,6 @@ const AuthService = {
   },
   async userLogin(user) {
     const response = await axios.post("/users/login", { user });
-    console.log("UserInfos:", response);
     return response;
   },
   async getUser() {
