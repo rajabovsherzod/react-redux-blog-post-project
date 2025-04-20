@@ -1,71 +1,85 @@
-/* Navbar.css - o'zgartirilgan versiya */
-.navbar-container {
-    width: 100%;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 16px 0;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    position: fixed; /* Fixed position */
+/* Navbar.css - to'liq yangilangan versiya */
+
+/* Base styles */
+* {
+    box-sizing: border-box;
+  }
+  
+  .navbar-container {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
   
   body {
     padding-top: 70px; /* Fixed navbar uchun joy */
   }
   
-  .navbar-content {
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box;
+  }
+  
+  /* Main Navbar */
+  .navbar-main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap; /* Tablet/desktop uchun */
+    padding: 16px 0;
+    border-bottom: 1px solid #e5e7eb;
+    width: 100%;
   }
   
   .navbar-logo {
     z-index: 10;
-    flex-shrink: 0; /* Logo o'lchamini saqlab qolish */
+    flex-shrink: 0;
   }
   
-  .navbar-menu {
+  /* Desktop Menu - navigatsiyalar markazda */
+  .desktop-menu {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: center;
+    flex-grow: 1;
   }
   
-  .navbar-nav {
+  .nav-links-horizontal {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
-    flex-direction: row; /* Horizontal menu */
-    justify-content: center; /* Center links */
-    flex-grow: 1; /* Take available space */
+    justify-content: center;
+  }
+  
+  .nav-links-horizontal li {
+    margin: 0 16px;
   }
   
   .nav-link {
-    padding: 8px 12px;
-    color: #4b5563;
+    color: #111827;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
+    padding: 8px 0;
   }
   
-  .nav-link:hover {
-    color: #111827;
+  .nav-link:hover, .nav-link.active {
+    color: #4f46e5;
   }
   
-  .nav-link.active {
-    color: #111827;
-    font-weight: 600;
-  }
-  
-  .navbar-auth {
+  /* Desktop Auth */
+  .desktop-auth {
     display: flex;
     align-items: center;
-    flex-shrink: 0; /* Auth buttons o'lchamini saqlab qolish */
+    flex-shrink: 0;
   }
   
   .user-menu {
@@ -77,50 +91,50 @@
     margin: 0;
     margin-right: 16px;
     font-weight: 500;
+    color: #111827;
   }
   
   .auth-buttons {
     display: flex;
-    gap: 8px;
+    gap: 12px;
   }
   
-  /* Button Styles */
-  .btn-login, .btn-logout, .btn-signup {
+  .auth-button {
     padding: 8px 16px;
     border-radius: 6px;
     font-weight: 500;
+    font-size: 15px;
     cursor: pointer;
     transition: all 0.2s;
-    font-size: 14px;
   }
   
-  .btn-login {
+  .auth-button.login {
     background-color: transparent;
     border: 1px solid #374151;
     color: #374151;
   }
   
-  .btn-login:hover {
+  .auth-button.login:hover {
     background-color: #f3f4f6;
   }
   
-  .btn-signup {
+  .auth-button.signup {
     background-color: #111827;
     border: 1px solid #111827;
     color: white;
   }
   
-  .btn-signup:hover {
+  .auth-button.signup:hover {
     background-color: #1f2937;
   }
   
-  .btn-logout {
+  .auth-button.logout {
     background-color: transparent;
     border: 1px solid #ef4444;
     color: #ef4444;
   }
   
-  .btn-logout:hover {
+  .auth-button.logout:hover {
     background-color: #fef2f2;
   }
   
@@ -157,65 +171,149 @@
     transform: translateY(-9px) rotate(-45deg);
   }
   
+  /* Dropdown Menu */
+  .navbar-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+  }
+  
+  .navbar-dropdown.open {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .dropdown-content {
+    padding: 24px 20px !important;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Tablet Dropdown - bitta qatorda */
+  .tablet-dropdown {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dropdown-nav-links {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .dropdown-auth {
+    display: flex;
+  }
+  
+  /* Mobile dropdown - markazlashtirilgan */
+  .mobile-dropdown {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .mobile-auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mobile-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mobile-user .username {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  
+  .mobile-buttons {
+    display: flex;
+    gap: 12px;
+  }
+  
   /* Responsive Styles */
-  @media (max-width: 768px) {
+  @media (max-width: 991px) {
+    .desktop-menu, .desktop-auth {
+      display: none;
+    }
+    
     .hamburger-menu {
       display: flex;
     }
     
-    .navbar-content {
-      flex-wrap: wrap; /* Mobile uchun */
+    .tablet-dropdown {
+      display: flex;
     }
     
-    .navbar-menu {
-      order: 3; /* Logo va hamburger menudan keyin */
-      flex-basis: 100%; /* To'liq kenglikni egallash */
-      margin-left: 0; /* Reset margin */
-      height: 0; /* Yopilgan holatda balandligi 0 */
-      overflow: hidden; /* Yopilgan holatda contentni yashirish */
-      transition: height 0.3s ease; /* Smooth height transition */
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0;
-      margin-top: 0;
+    .mobile-dropdown {
+      display: none;
     }
     
-    .navbar-menu.open {
-      height: auto; /* Ochilgan holatda barcha contentni ko'rsatish */
-      padding-top: 16px;
-      margin-top: 16px;
-      border-top: 1px solid #e5e7eb;
+    .navbar-main {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .container, .container-fluid {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
     }
     
-    .navbar-nav {
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-      margin-bottom: 16px;
+    .dropdown-content {
+      padding: 20px !important;
+    }
+  }
+  
+  @media (max-width: 390px) {
+    .tablet-dropdown {
+      display: none;
     }
     
-    .nav-link {
-      padding: 12px 0;
-      width: 100%;
-      font-size: 16px;
+    .mobile-dropdown {
+      display: flex;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .container, .container-fluid {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
     }
     
-    .navbar-auth {
-      width: 100%;
+    .dropdown-content {
+      padding: 16px !important;
     }
     
-    .user-menu {
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
-    }
-    
-    .username {
-      margin-right: 0;
-    }
-    
-    .auth-buttons {
-      width: 100%;
-      justify-content: flex-start;
+    .navbar-logo img {
+      width: 160px;
     }
   }
