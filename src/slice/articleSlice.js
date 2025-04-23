@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    isloading: false,
+    isLoading: false,
     articles: [],
     articleDetail: null,
     error: null,
@@ -11,29 +11,40 @@ export const articleSlice = createSlice({
     initialState,
     reducers: {
         getArticlesStart: state => {
-            state.isloading = true
+            state.isLoading = true
         },
         getArticlesSucces: (state, action) => {
-            state.isloading = false
+            state.isLoading = false
             state.articles = action.payload
         },
         getArticlesFailure: (state, { payload }) => {
             state.error = payload
-            state.isloading = false
+            state.isLoading = false
         },
         getArticleDetailStart: state => {
-            state.isloading = true
+            state.isLoading = true
         },
         getArticleDetailSucces: (state, {payload}) => {
-            state.isloading = false
+            state.isLoading = false
             state.articleDetail = payload
         },
         getArticleDetailFailure: (state, {payload}) => {
             state.error = payload
-            state.isloading = false
+            state.isLoading = false
         },
+        postArticleStart: state => {
+            state.isLoading = true
+        },
+        postArticleSucces: (state, {payload}) => {
+            state.isLoading = false
+            state.articles.push(payload)
+        },
+        postArticleFailure: state => {
+            state.isLoading = false
+            state.error = "Error Article Post progress"
+        }
     },
 })
 
-export const {getArticlesStart, getArticlesSucces, getArticlesFailure, getArticleDetailStart, getArticleDetailSucces, getArticleDetailFailure} = articleSlice.actions
+export const {getArticlesStart, getArticlesSucces, getArticlesFailure, getArticleDetailStart, getArticleDetailSucces, getArticleDetailFailure, postArticleStart, postArticleSucces, postArticleFailure} = articleSlice.actions
 export default articleSlice.reducer

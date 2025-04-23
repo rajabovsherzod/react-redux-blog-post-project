@@ -41,17 +41,17 @@ const images = [
     "Development",
   ]
 
-  const getStableImage = (postId) => {
+  const getStableImage = (slug) => {
     // Stringdan raqamli hash yasaymiz
     let hash = 0;
-    for (let i = 0; i < postId.length; i++) {
-      hash = postId.charCodeAt(i) + ((hash << 5) - hash);
+    for (let i = 0; i < slug.length; i++) {
+      hash = slug.charCodeAt(i) + ((hash << 5) - hash);
     }
     const index = Math.abs(hash) % images.length;
     return images[index];
   };
-  const getStableTag = (postId) => {
-    const hash = Array.from(postId).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const getStableTag = (slug) => {
+    const hash = Array.from(slug).reduce((acc, char) => acc + char.charCodeAt(0), 0);
     const index = hash % tags.length;
     return tags[index];
   };
@@ -69,7 +69,7 @@ const tagColors = [
     { bg: "#FFF4EB", text: "#E87A14" }
   ];
 
-const PostCard = ({ post, size = 'medium', hasArrow = false }) => {
+const PostCard = ({ post, postId, size = 'medium', hasArrow = false }) => {
       const navigate = useNavigate();
       const shuffleColors = () => {
         const colors = [...tagColors];
@@ -83,7 +83,7 @@ const PostCard = ({ post, size = 'medium', hasArrow = false }) => {
     return (
         <div className={`post-card post-card-${size}`}>
         <div className="post-image">
-            <img src={getStableImage(post.id)} alt={post.title} />
+            <img src={getStableImage(post?.id)} alt={post?.title} />
         </div>
         <div className="post-content">
             <div className="post-meta">

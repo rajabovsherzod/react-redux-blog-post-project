@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Main, Login, Register, Navbar, PublicRoute, ArticleDetail } from './components'
+import { Main, Login, Register, Navbar, PublicRoute, ArticleDetail, ScrollToTop, CreateArticle } from './components'
 import AuthService from './service/auth'
 import { useDispatch } from 'react-redux'
 import { signUserSucces } from './slice/auth'
@@ -43,6 +43,7 @@ const App = () => {
     <div className='blog-container'>
       <Navbar/>
       <Suspense fallback={<Loader/>}>
+      <ScrollToTop/>
         <Routes>
           <Route path="/" element={<Main/>} />
           <Route path='/login' element={
@@ -56,6 +57,7 @@ const App = () => {
               </PublicRoute>
           }/>
           <Route path='/article/:slug' element={<ArticleDetail/>}/>
+          <Route path='/create-article' element={<CreateArticle/>}/>
         </Routes>
       </Suspense>
       

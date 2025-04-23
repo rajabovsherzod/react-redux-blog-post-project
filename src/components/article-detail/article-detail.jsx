@@ -1,11 +1,11 @@
-import {React, useEffect} from 'react'
+import {React, useEffect, useLayoutEffect} from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import ArticleService from '../../service/article'
 import { useDispatch } from 'react-redux'
 import {getArticleDetailStart, getArticleDetailSucces, getArticleDetailFailure} from '../../slice/articleSlice'
 import { useSelector } from 'react-redux'
-import postCardImage10 from '../../constants/postCardImage/postCardImage10.jpg'
 import {PostCard} from '../'
+import {Loader} from '../../ui'
 
 import './article-detail.css'
 const ArticleDetail = () => {
@@ -24,11 +24,21 @@ const ArticleDetail = () => {
       console.log(error)
     }
   }
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug])
   useEffect(() => {
     getArticleDetail()
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }, [slug])
 
-  const {articleDetail, articles} = useSelector(state => state.article) 
+  const {articleDetail, articles, isLoading} = useSelector(state => state.article) 
   console.log("article",articleDetail)
   console.log("articles",articles)
 
@@ -37,17 +47,19 @@ const ArticleDetail = () => {
   console.log(suggestedPosts.map(post => post.title));
 
 
-  return (
-    <div className="article-detail-container">
-      <div className="article-header">
-        <div className="article-cover-image">
-          <img src={imageUrl} alt="{articleDetail.title}" />
+  return isLoading ? (<Loader/>) : (
+    articleDetail !== null && (
+    <>
+    <div className="article-detail-container" id="article-top"> 
+      <div className="article-main-content">
+        <div className="article-image-column">
+          <img src={imageUrl} alt={articleDetail?.title} />
         </div>
-      </div>
 
-      <div className="article-content-wrapper">
-        <article className="article-content">
+        <div className="article-text-column">
           <h1 className="article-title">{articleDetail?.title}</h1>
+
+          <p className="article-description">{articleDetail?.description}</p>
 
           <div className="article-meta">
             <div className="article-author">
@@ -82,10 +94,14 @@ const ArticleDetail = () => {
               </span>
             ))}
           </div>
+        </div>
+      </div>
 
+      <div className="article-content-wrapper">
+        <article className="article-content">
           <div
             className="article-body"
-            dangerouslySetInnerHTML={{ __html: "articleDetail.body" }}
+            dangerouslySetInnerHTML={{ __html: articleDetail?.body }}
           ></div>
         </article>
       </div>
@@ -96,13 +112,15 @@ const ArticleDetail = () => {
           <div className="suggested-posts-grid">
             {suggestedPosts.map((post) => (
               <div key={post.id} className="suggested-post-item">
-                <PostCard key={post.id} post={post} size="medium" hasArrow={true} />
+                <PostCard post={post} size="medium" hasArrow={true} />
               </div>
             ))}
           </div>
         </div>
       </div>
     </div>
+    </>
+  )
   )
 }
 

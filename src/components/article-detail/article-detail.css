@@ -14,6 +14,9 @@
   margin: 0;
   padding: 0;
 }
+html {
+  scroll-behavior: auto !important;
+}
 
 body {
   font-family: var(--font-main);
@@ -31,28 +34,63 @@ body {
 .article-detail-container {
   max-width: 100%;
   min-height: 100vh;
-  margin: 0;
+  margin: 0 auto;
   background-color: #fff;
 }
 
-/* Header with large image */
-.article-header {
-  position: relative;
+/* New split layout - image on left, content on right */
+.article-main-content {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .article-main-content {
+    flex-direction: row;
+    height: auto;
+    min-height: 400px;
+  }
+}
+
+.article-image-column {
+  width: 100%;
+  height: 300px;
   overflow: hidden;
 }
 
-.article-cover-image {
-  width: 100%;
-  height: 400px;
-  position: relative;
-}
-
-.article-cover-image img {
+.article-image-column img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+@media (min-width: 768px) {
+  .article-image-column {
+    width: 50%;
+    height: 100%;
+    min-height: 400px;
+  }
+}
+
+.article-text-column {
+  width: 100%;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .article-text-column {
+    width: 50%;
+    padding: 40px;
+  }
 }
 
 /* Loading state */
@@ -102,17 +140,25 @@ body {
 
 /* Article content */
 .article-content-wrapper {
-  max-width: 800px;
+  max-width: 95%;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
 .article-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #111827;
   line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.article-description {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #4b5563;
   margin-bottom: 20px;
+  font-weight: 400;
 }
 
 .article-meta {
@@ -142,7 +188,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 32px;
+  margin-top: 10px;
 }
 
 .article-tag {
@@ -214,25 +260,21 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .article-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .article-meta {
     flex-direction: column;
     gap: 8px;
   }
-
-  .article-cover-image {
-    height: 300px;
-  }
 }
 
 @media (max-width: 480px) {
   .article-title {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
-
-  .article-cover-image {
-    height: 220px;
+  
+  .article-description {
+    font-size: 1rem;
   }
 }

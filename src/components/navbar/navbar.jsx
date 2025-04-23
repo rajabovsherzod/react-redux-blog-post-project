@@ -62,10 +62,10 @@ const Navbar = () => {
         
         {/* Desktop menusi - navigatsiyalar markazda */}
         <div className="desktop-menu">
-          <ul className="nav-links-horizontal">
-            <li><a href="#" className="nav-link active">Blog</a></li>
-            <li><a href="#" className="nav-link">Project</a></li>
-            <li><a href="#" className="nav-link">About</a></li>
+          <ul className="nav-links-horizontal gap-4">
+            <Link to={'/'} className="nav-link">Blogs</Link>
+            <Link to={'/create-article'} className="nav-link">Create</Link>
+            <Link to={'/create-article'} className="nav-link">About</Link>
           </ul>
         </div>
         
@@ -107,9 +107,9 @@ const Navbar = () => {
           <div className="tablet-dropdown">
             <div className="dropdown-row">
               <div className="dropdown-nav-links no-select">
-                <a href="#" className="nav-link no-select">Blog</a>
-                <a href="#" className="nav-link no-select">Project</a>
-                <a href="#" className="nav-link no-select">About</a>
+                  <Link to={'/'} className="nav-link">Blogs</Link>
+                  <Link to={'/create-article'} className="nav-link">Create</Link>
+                  <Link to={'/create-article'} className="nav-link">About</Link>
               </div>
               
               <div className="dropdown-auth">
@@ -135,9 +135,9 @@ const Navbar = () => {
           {/* Mobile dropdown - markazlashtirilgan */}
           <div className="mobile-dropdown">
             <div className="mobile-nav">
-              <a href="#" className="nav-link active">Blog</a>
-              <a href="#" className="nav-link">Project</a>
-              <a href="#" className="nav-link">About</a>
+                <Link to={'/'} className="nav-link">Blogs</Link>
+                <Link to={'/create-article'} className="nav-link">Create</Link>
+                <Link to={'/create-article'} className="nav-link">About</Link>
             </div>
             
             <div className="mobile-auth">

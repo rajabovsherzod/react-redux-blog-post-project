@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './footer.css';
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const {isLoading} = useSelector(state => state.article)
   
-  return (
+  return (!isLoading) && (
     <footer className="footer">
       <div className="container">
         <div className="footer-content">

@@ -8,3 +8,5 @@ export { default as ArticleDetail } from "./article-detail/article-detail.jsx";
 export {default as Footer} from './footer/footer'
 export {default as BlogHeader} from './blogHeader/blogHeader'
 export {default as PostCard} from './postCard/postCard'
+export {default as ScrollToTop} from './scrollTop/scrollTop'
+export {default as CreateArticle} from './createArticle/createArticle'
