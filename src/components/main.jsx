@@ -3,8 +3,9 @@ import PostCard from './postCard/postCard';
 import BlogHeader from './blogHeader/blogHeader';
 import postCardImage from '../constants/postCardImage/postCardImage1.jpg'
 import { useSelector } from 'react-redux';
+import Loader from "../ui/loader/loader"
 const Main = () => {
-  const {articles} = useSelector((state) => state.article);
+  const {articles, isLoading} = useSelector((state) => state.article);
   const posts = [
     {
       id: 1,
@@ -105,11 +106,13 @@ const Main = () => {
 
   return (
     <div className="main-container">
+      {isLoading? (<Loader />) : (
+      <>
       <BlogHeader/>
       <div className="blog-container">
         {/* Recent Posts */}
         <section className="recent-posts">
-          <h2 className="section-title">Recent blog posts</h2>
+          <h2 className="section-title no-select">Recent blog posts</h2>
           
           <div className="recent-posts-grid">
             <div className="main-post">
@@ -138,6 +141,7 @@ const Main = () => {
           </div>
         </section>
       </div>
+      </>)}
     </div>
   )
 }

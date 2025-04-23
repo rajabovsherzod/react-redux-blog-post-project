@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Main, Login, Register, Navbar, PublicRoute } from './components'
+import { Main, Login, Register, Navbar, PublicRoute, ArticleDetail } from './components'
 import AuthService from './service/auth'
 import { useDispatch } from 'react-redux'
 import { signUserSucces } from './slice/auth'
 import {getArticlesStart, getArticlesSucces} from './slice/articleSlice'
 import { getItem } from './helpers/persistance-storage'
 import ArticleService from './service/article'
+import Footer from './components/footer/footer'
+import { Loader } from './ui'
 const App = () => {
   const dispatch = useDispatch()
   const getUser = async () => {
@@ -38,21 +40,26 @@ const App = () => {
   }, [])
 
   return (
-    <div>
+    <div className='blog-container'>
       <Navbar/>
-      <Routes>
-        <Route path="/" element={<Main/>} />
-        <Route path='/login' element={
-          <PublicRoute>
-            <Login/>
-          </PublicRoute>
-        }/>
-        <Route path='/register' element={
+      <Suspense fallback={<Loader/>}>
+        <Routes>
+          <Route path="/" element={<Main/>} />
+          <Route path='/login' element={
             <PublicRoute>
-                <Register/>
+              <Login/>
             </PublicRoute>
-        }/>
-      </Routes>
+          }/>
+          <Route path='/register' element={
+              <PublicRoute>
+                  <Register/>
+              </PublicRoute>
+          }/>
+          <Route path='/article/:slug' element={<ArticleDetail/>}/>
+        </Routes>
+      </Suspense>
+      
+      <Footer/>
     </div>
   )
 }

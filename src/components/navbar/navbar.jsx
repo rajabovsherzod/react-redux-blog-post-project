@@ -106,10 +106,10 @@ const Navbar = () => {
           {/* Tablet dropdown - bitta qatorda */}
           <div className="tablet-dropdown">
             <div className="dropdown-row">
-              <div className="dropdown-nav-links">
-                <a href="#" className="nav-link active">Blog</a>
-                <a href="#" className="nav-link">Project</a>
-                <a href="#" className="nav-link">About</a>
+              <div className="dropdown-nav-links no-select">
+                <a href="#" className="nav-link no-select">Blog</a>
+                <a href="#" className="nav-link no-select">Project</a>
+                <a href="#" className="nav-link no-select">About</a>
               </div>
               
               <div className="dropdown-auth">

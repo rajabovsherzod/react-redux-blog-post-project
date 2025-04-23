@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './postCard.css';
 import postCardImage1 from '../../constants/postCardImage/postCardImage1.jpg'
 import postCardImage2 from '../../constants/postCardImage/postCardImage2.jpg'
@@ -69,6 +70,7 @@ const tagColors = [
   ];
 
 const PostCard = ({ post, size = 'medium', hasArrow = false }) => {
+      const navigate = useNavigate();
       const shuffleColors = () => {
         const colors = [...tagColors];
         for (let i = colors.length - 1; i > 0; i--) {
@@ -118,6 +120,7 @@ const PostCard = ({ post, size = 'medium', hasArrow = false }) => {
       </div>
       <div className="post-actions">
           <button 
+            onClick={() => navigate(`/article/${post.slug}`, { state: { imageUrl: getStableImage(post.id) } })}
             className="action-btn view-btn" 
             aria-label="View post"
             title="View post"

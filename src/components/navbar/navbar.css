@@ -14,6 +14,9 @@
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
+  .navbar-container a {
+    text-decoration: none;
+  }
   
   body {
     padding-top: 70px; /* Fixed navbar uchun joy */
@@ -110,8 +113,9 @@
   
   .auth-button.login {
     background-color: transparent;
-    border: 1px solid #374151;
-    color: #374151;
+    border: 1px solid #000;
+    color: #000;
+    text-decoration: none;
   }
   
   .auth-button.login:hover {
@@ -293,7 +297,7 @@
     }
   }
   
-  @media (max-width: 390px) {
+  @media (max-width: 510px) {
     .tablet-dropdown {
       display: none;
     }
