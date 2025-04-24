@@ -25,6 +25,7 @@ const CreateArticle = () => {
       dispatch(postArticleFailure())
     }
   }
+  const buttonName = "Publish Article"
   return (
     <>
       <div className="create-article-container">
@@ -32,7 +33,7 @@ const CreateArticle = () => {
             <h1>Create New Article</h1>
             <p>Share your knowledge and ideas with the community</p>
           </div>
-          <CreateEditForm title={title} setTitle={setTitle} description={description} setDescription={setDescription} body={body} setBody={setBody} formSubmit={formSubmit} />
+          <CreateEditForm title={title} setTitle={setTitle} description={description} setDescription={setDescription} body={body} setBody={setBody} formSubmit={formSubmit}  buttonName={buttonName}/>
       </div>
     </>
   )

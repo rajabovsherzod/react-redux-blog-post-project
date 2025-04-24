@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Main, Login, Register, Navbar, PublicRoute, ArticleDetail, ScrollToTop, CreateArticle } from './components'
+import { Main, Login, Register, Navbar, PublicRoute, ArticleDetail, ScrollToTop, CreateArticle, EditArticle } from './components'
 import AuthService from './service/auth'
 import { useDispatch } from 'react-redux'
 import { signUserSucces } from './slice/auth'
@@ -58,6 +58,7 @@ const App = () => {
           }/>
           <Route path='/article/:slug' element={<ArticleDetail/>}/>
           <Route path='/create-article' element={<CreateArticle/>}/>
+          <Route path='/edit-article/:slug' element={<EditArticle/>}/>
         </Routes>
       </Suspense>
       

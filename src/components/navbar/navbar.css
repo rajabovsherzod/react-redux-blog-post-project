@@ -188,13 +188,110 @@
     transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
     opacity: 0;
     visibility: hidden;
-    width: 100%;
+    transition-delay: 0s, 0s, 0.5s; /* visibility o'zgarishi uchun kechikish */
+  }
+
+  .navbar-dropdown,
+  .navbar-dropdown *,
+  .auth-buttons,
+  .auth-button,
+  .user-menu {
+    transition-duration: 0.5s !important;
+    transition-timing-function: ease-in-out !important;
+  }
+
+  .navbar-dropdown:not(.open) {
+    pointer-events: none;
+  }
+
+  .navbar-dropdown:not(.open) .auth-buttons,
+  .navbar-dropdown:not(.open) .user-menu,
+  .navbar-dropdown:not(.open) .auth-button,
+  .navbar-dropdown:not(.open) .nav-link {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .navbar-dropdown,
+  .dropdown-content, 
+  .dropdown-content *,
+  .auth-section, 
+  .auth-section *,
+  .user-menu, 
+  .user-menu *,
+  .auth-buttons,
+  .auth-buttons *,
+  .mobile-dropdown,
+  .mobile-dropdown * {
+    transition-duration: 0.3s !important; /* Barcha tranzitsiyalar uchun bir xil vaqt */
+  }
+
+  .navbar-dropdown:not(.open) .dropdown-content * {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.3s ease, visibility 0s 0.3s !important;
+  }
+
+  .navbar-dropdown.open .dropdown-content * {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s !important;
   }
   
   .navbar-dropdown.open {
     max-height: 500px;
     opacity: 1;
     visibility: visible;
+    transition-delay: 0s; /* Ochilganda kechikish yo'q */
+  }
+
+  .navbar-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-20px); /* Boshlang'ich holat - yuqoriroq */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: 
+      max-height 0.4s ease-in-out,
+      opacity 0.4s ease-in-out,
+      visibility 0s 0.4s,
+      transform 0.4s ease-in-out;
+    z-index: 1000;
+  }
+  
+  /* Menu ochilgan holat */
+  .navbar-dropdown.open {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Normal holat */
+    transition: 
+      max-height 0.4s ease-in-out,
+      opacity 0.4s ease-in-out,
+      visibility 0s,
+      transform 0.4s ease-in-out;
+  }
+  
+  /* Menu ichidagi kontentlar */
+  .dropdown-content {
+    padding: 24px 20px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: 
+      opacity 0.4s ease-in-out,
+      transform 0.4s ease-in-out;
+  }
+  
+  /* Menu ochilganda kontent animatsiyasi */
+  .navbar-dropdown.open .dropdown-content {
+    opacity: 1;
+    transform: translateY(0);
   }
   
   .dropdown-content {

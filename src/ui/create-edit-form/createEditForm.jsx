@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './createEditForm.css'
 import { useSelector } from 'react-redux';
 
-const CreateEditForm = ({title, setTitle, description, setDescription, body, setBody, formSubmit}) => {
+const CreateEditForm = ({title, setTitle, description, setDescription, body, setBody, formSubmit, buttonName}) => {
 const navigate = useNavigate();
 const {isLoading} = useSelector(state => state.article) 
   return (
@@ -107,10 +107,10 @@ const {isLoading} = useSelector(state => state.article)
           <button type="submit" className="submit-btn">
             {isLoading ? (
               <>
-                <span>Publishing...</span>
+                {buttonName === "Update Article" ? <span>Updating...</span> : <span>Publishing...</span>}
               </>
             ) : (
-              'Publish Article'
+              `${buttonName}`
             )}
           </button>
         </div>

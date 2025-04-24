@@ -35,9 +35,8 @@ export const articleSlice = createSlice({
         postArticleStart: state => {
             state.isLoading = true
         },
-        postArticleSucces: (state, {payload}) => {
+        postArticleSucces: (state) => {
             state.isLoading = false
-            state.articles.push(payload)
         },
         postArticleFailure: state => {
             state.isLoading = false

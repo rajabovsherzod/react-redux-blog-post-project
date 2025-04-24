@@ -1,11 +1,15 @@
-import React from 'react'
+import {React, useEffect} from 'react'
 import PostCard from './postCard/postCard';
 import BlogHeader from './blogHeader/blogHeader';
 import postCardImage from '../constants/postCardImage/postCardImage1.jpg'
 import { useSelector } from 'react-redux';
 import Loader from "../ui/loader/loader"
+import ArticleService from '../service/article';
+import { useDispatch } from 'react-redux';
+import { getArticlesSucces, getArticlesStart } from '../slice/articleSlice';
 const Main = () => {
   const {articles, isLoading} = useSelector((state) => state.article);
+  const dispatch = useDispatch()
 
 
   // const allPosts = [
@@ -67,6 +71,30 @@ const Main = () => {
 
   const recentPosts = [...articles || []].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 4);
 
+  const getArticles = async () => {
+    dispatch(getArticlesStart())
+    try {
+      const response = await ArticleService.getArticle()
+      dispatch(getArticlesSucces(response.articles))
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deleteArticle = async slug => {
+    try {
+      await ArticleService.deleteArticle(slug)
+      getArticles()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getArticles()
+  }, [])
+
   return articles.length > 0 && (
     <div className="main-container">
       { isLoading? (<Loader />) : (
@@ -79,12 +107,12 @@ const Main = () => {
           
           <div className="recent-posts-grid">
             <div className="main-post">
-              <PostCard post={recentPosts[0]} size="large" hasArrow={true} />
+              <PostCard post={recentPosts[0]} size="large" hasArrow={true} deleteArticle={deleteArticle}/>
             </div>
             
             <div className="secondary-posts">
               {recentPosts.slice(1, 3).map(post => (
-                <PostCard key={post.id} post={post} size="small" hasArrow={true} />
+                <PostCard key={post.id} post={post} size="small" hasArrow={true} deleteArticle={deleteArticle}/>
               ))}
             </div>
           </div>
@@ -92,14 +120,14 @@ const Main = () => {
 
         {/* Grid Design Post */}
         <section className="grid-design-post">
-          <PostCard post={recentPosts[3]} size="large" hasArrow={true} />
+          <PostCard post={recentPosts[3]} size="large" hasArrow={true} deleteArticle={deleteArticle}/>
         </section>
         {/* All Posts */}
         <section className="all-posts-section">
           <h2 className="section-title">All blog posts</h2>
           <div className="all-posts-grid">
             {articles.map(post => (
-              <PostCard key={post.id} post={post} postId = {post.id} size="medium" hasArrow={true} />
+              <PostCard key={post.id} post={post} postId = {post.id} size="medium" hasArrow={true} deleteArticle={deleteArticle}/>
             ))}
           </div>
         </section>

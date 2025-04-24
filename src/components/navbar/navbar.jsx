@@ -23,6 +23,10 @@ const Navbar = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleNavClick = (e) => {
+    setMenuOpen(false);
+  };
+
   // Ekran o'lchami o'zgarganda menu avtomatik yopiladi
   useEffect(() => {
     const handleResize = () => {
@@ -63,9 +67,9 @@ const Navbar = () => {
         {/* Desktop menusi - navigatsiyalar markazda */}
         <div className="desktop-menu">
           <ul className="nav-links-horizontal gap-4">
-            <Link to={'/'} className="nav-link">Blogs</Link>
-            <Link to={'/create-article'} className="nav-link">Create</Link>
-            <Link to={'/create-article'} className="nav-link">About</Link>
+            <Link to={'/'} className="nav-link" onClick={handleNavClick}>Blogs</Link>
+            <Link to={'/create-article'} className="nav-link" onClick={handleNavClick}>Create</Link>
+            <Link to={'/create-article'} className="nav-link" onClick={handleNavClick}>About</Link>
           </ul>
         </div>
         
@@ -78,10 +82,10 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="auth-buttons">
-              <Link to="/login">
+              <Link to="/login" onClick={handleNavClick}>
                 <button className="auth-button login">Login</button>
               </Link>
-              <Link to="/register">
+              <Link to="/register" onClick={handleNavClick}>
                 <button className="auth-button signup">Sign-up</button>
               </Link>
             </div>
@@ -107,9 +111,9 @@ const Navbar = () => {
           <div className="tablet-dropdown">
             <div className="dropdown-row">
               <div className="dropdown-nav-links no-select">
-                  <Link to={'/'} className="nav-link">Blogs</Link>
-                  <Link to={'/create-article'} className="nav-link">Create</Link>
-                  <Link to={'/create-article'} className="nav-link">About</Link>
+                  <Link to={'/'} className="nav-link" onClick={handleNavClick}>Blogs</Link>
+                  <Link to={'/create-article'} className="nav-link" onClick={handleNavClick}>Create</Link>
+                  <Link to={'/create-article'} className="nav-link" onClick={handleNavClick}>About</Link>
               </div>
               
               <div className="dropdown-auth">
@@ -120,10 +124,10 @@ const Navbar = () => {
                   </div>
                 ) : (
                   <div className="auth-buttons">
-                    <Link to="/login">
+                    <Link to="/login" onClick={handleNavClick}>
                       <button className="auth-button login">Login</button>
                     </Link>
-                    <Link to="/register">
+                    <Link to="/register" onClick={handleNavClick}>
                       <button className="auth-button signup">Sign-up</button>
                     </Link>
                   </div>
@@ -135,9 +139,9 @@ const Navbar = () => {
           {/* Mobile dropdown - markazlashtirilgan */}
           <div className="mobile-dropdown">
             <div className="mobile-nav">
-                <Link to={'/'} className="nav-link">Blogs</Link>
-                <Link to={'/create-article'} className="nav-link">Create</Link>
-                <Link to={'/create-article'} className="nav-link">About</Link>
+                <Link to={'/'} className="nav-link" onClick={handleNavClick}>Blogs</Link>
+                <Link to={'/create-article'} className="nav-link" onClick={handleNavClick}>Create</Link>
+                <Link to={'/create-article'} className="nav-link" onClick={handleNavClick}>About</Link>
             </div>
             
             <div className="mobile-auth">
@@ -148,10 +152,10 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div className="mobile-buttons">
-                  <Link to="/login">
+                  <Link to="/login" onClick={handleNavClick}>
                     <button className="auth-button login">Login</button>
                   </Link>
-                  <Link to="/register">
+                  <Link to="/register" onClick={handleNavClick}>
                     <button className="auth-button signup">Sign-up</button>
                   </Link>
                 </div>
