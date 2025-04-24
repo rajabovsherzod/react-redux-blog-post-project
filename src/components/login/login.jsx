@@ -71,7 +71,6 @@ const Login = () => {
           >
             {isLoading ? (
               <>
-                <span className="loading-spinner"></span>
                 <span>Loading...</span>
               </>
             ) : (
